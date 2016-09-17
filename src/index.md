@@ -19,23 +19,14 @@ layout: layout.html
 
 <div class="message-gag-wrapper">
   <div class="message-gag">
-  <!--   <div class="gag-wrapper">
-      <div class="gag gag-left">
-        <div class="message">"Web Dev Rockstar"? Seriously? Don't you think that's a little lame?</div>
-      </div>
-    </div>
-    <div class="gag gag-right">
-      <div class="message">no it's cool</div>
-    </div>
-    <div class="gag gag-left">
-      <div class="message">Please change it. It's unprofessional.</div>
-    </div>
-   -->
    </div>
 </div>
+
+<hr>
+<h1>Projects</h1>
 
 <footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script> -->
-<script type="text/javascript" src="/scripts/script.js"></script>
+<script type="text/javascript" src="/scripts/script.min.js"></script>
 </footer>

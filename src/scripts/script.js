@@ -1,6 +1,11 @@
 function addGagMessage(side, content) {
-  var el = $('<div class="gag gag-' + side + '">' + '<div class="message">' + content + '</div></div>')
-  el = $('<div class="gag-wrapper gag-wrapper-' + side + '"></div>').append(el);
+  var el = $(`
+    <div class="gag-wrapper gag-wrapper-${side}">
+      <div class="gag gag-${side}">
+        <div class="message">${content}</div>
+      </div>
+    </div>
+  `);
   $('.message-gag').prepend(el);
   var h = el.find('.message').height() + 60
   el.css({height: h})
@@ -20,28 +25,28 @@ function runGag(frames) {
     }
     if (frame[1] == 'typeTitle') {
       setTimeout(() => {
-        typeGagTitle(frame[2])
+        typeGagTitle(frame[2]);
       }, total);
     }
     if (frame[1] == 'backspaceTitle') {
       setTimeout(() => {
-        backspaceGagTitle()
+        backspaceGagTitle();
       }, total);
     }
     if (frame[1] == 'clearTitle') {
       setTimeout(() => {
-        clearGagTitle()
+        clearGagTitle();
       }, total)
     }
     if (frame[1] == 'blink') {
       setTimeout(() => {
         $('#gag-title').addClass('blink');
-      }, total)
+      }, total);
     }
     if (frame[1] == 'blinkOff') {
       setTimeout(() => {
         $('#gag-title').removeClass('blink');
-      }, total)
+      }, total);
     }
   });
 }
@@ -52,9 +57,13 @@ function backspaceGagTitle() {
   for (var i = 0; i <= len; i++) {
     total += 100
     setTimeout(() => {
+      $('#gag-title').removeClass('blink').addClass('blink-stay');
       var $gagTitle = $('#gag-title');
       var newText = $gagTitle.html().slice(0,-1)
       $gagTitle.html(newText);
+      if (newText.length == 0) {
+        $('#gag-title').removeClass('blink-stay').addClass('blink');
+      }
     }, total)
   }
 }
@@ -65,9 +74,13 @@ function typeGagTitle(title) {
   for (var i = 0; i <= len; i++) {
     total += 100
     setTimeout(() => {
+      $('#gag-title').removeClass('blink').addClass('blink-stay');
       var $gagTitle = $('#gag-title');
       var newText = title.slice(0, $gagTitle.html().length + 1)
       $gagTitle.html(newText);
+      if (newText == title) {
+        $('#gag-title').removeClass('blink-stay').addClass('blink');
+      }
     }, total)
   }
 }
@@ -125,17 +138,10 @@ var frames = [
   [4400, 'right', "here--"],
   [1800, 'backspaceTitle'],
   [6000, 'typeTitle', "Web Developer"],
-  [7000, 'left', "Thank you."],
-  [4400, 'right', "You're welcome"],
-  [2400, 'right', ";)"],
-  [3000, 'blinkOff'],
+  [4200, 'left', "Thank you."],
+  [3800, 'right', "You're welcome"],
+  [1400, 'right', ";)"],
+  [2000, 'blinkOff'],
 ]
-
-frames = [
-  [500, 'left', 'Web Dev Rockstar? Really? Don\'t you think that\'s a little lame?'],
-  [500, 'right', "no it's cool"],
-  [500, 'left', 'Employers are going to see this.']
-]
-
 
 runGag(frames)
